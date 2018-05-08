@@ -12,6 +12,10 @@ var app = express();
 app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
+
+
+var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+var result = {'unix': null, 'natural': null};
 app.get("/", function (request, response) {
   response.send("https://timestamp-ms.herokuapp.com/1450137600");
 });
@@ -19,7 +23,17 @@ app.get("/", function(req,res){
   res.send('<p>Example usage:</p><code>http://localhost:8080/December%2015,%202015</code><br><code>http://localhost:8080/1450137600</code>');
 });
 
-app..
+app.get('/:date([0-9]*)',function(req,res){
+  var timeStamp = parseInt(req.params.date);
+  var newD = new Date(timeStamp * 1000);
+  result.unix = timeStamp;
+  result.natural = months[newD.getMonth] + ' ' + newD.getDate() + ',
+  
+});
+
+app.get('/:natString([a-zA-Z]*)',function(req,res){
+  if(req.params.natString)
+});
 
   
 
