@@ -13,11 +13,10 @@ app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
-  response.sendFile(__dirname + '/views/index.html');
+  response.send("https://timestamp-ms.herokuapp.com/1450137600");
 });
-app.post('/', function (req, res) {
-  res.send('Got a POST request')
-});
+app.get()
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
