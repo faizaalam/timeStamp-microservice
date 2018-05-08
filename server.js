@@ -32,14 +32,24 @@ app.get('/:date([0-9]*)',function(req,res){
 });
 
 app.get('/:natString([a-zA-Z]*)',function(req,res){
-  if(req.params.natString) {
+
     var timeStamp = req.params.natString;
     result.natural = timeStamp;
     
-   var newD = timeStamp.split(" ").filter(f=> f !== ',');
-  
-    res.send(newD);
+   var newD = timeStamp.split(" ");
+  if(months.indexOf(newD[0]) > -1 ){
+    var month = months.indexOf(newD[0]);
+    var day = newD[1].replace(',', ' ');
+    var year = newD[2];
+    
+    var natDate = new Date(year,month,day);
+    var tt = natDate.getTime();
+    
+    res.send(tt);
   }
+  
+    
+  
 });
 
   
