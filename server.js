@@ -25,14 +25,8 @@ app.get("/", function(req,res){
 });
 
 app.get("/api/whoami", function(req,res){
-  whoAmi.language = req.headers['accept-language'];
-  whoAmi.ipaddress = req.headers['x-forwarded-for']  ||         request.connection.remoteAddress ||
-  
-  
-         request.socket.remoteAddress ||
-  
-  
-         request.connection.socket.remoteAddress;
+  whoAmi.language = req.headers['accept-language'].split(',')[0];
+  whoAmi.ipaddress = (req.headers['x-forwarded-for']  ||  req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress).split(",")[0];
 
   whoAmi.software = req.headers['user-agent'].split(')')[0].split('(')[1];
  res.send(whoAmi);
