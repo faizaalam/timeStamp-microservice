@@ -39,16 +39,16 @@ app.get('/:natString([a-zA-Z]*)',function(req,res){
    var newD = timeStamp.split(" ");
   if(months.indexOf(newD[0]) > -1 ){
     var month = months.indexOf(newD[0]);
-    var day = newD[1].replace(',', ' ');
+    var day = newD[1].replace(',', '');
     var year = newD[2];
     
     var natDate = new Date(year,month,day);
     var tt = natDate.getTime();
+    result.unix = tt /1000;
     
-    res.send(tt);
   }
   
-    
+    res.send(result);
   
 });
 
