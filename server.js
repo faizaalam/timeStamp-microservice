@@ -27,12 +27,19 @@ app.get('/:date([0-9]*)',function(req,res){
   var timeStamp = parseInt(req.params.date);
   var newD = new Date(timeStamp * 1000);
   result.unix = timeStamp;
-  result.natural = months[newD.getMonth] + ' ' + newD.getDate() + ',
-  
+  result.natural = (months[newD.getMonth()]) + ' ' + newD.getDate() + ',' + newD.getFullYear();  
+  res.send(result);  
 });
 
 app.get('/:natString([a-zA-Z]*)',function(req,res){
-  if(req.params.natString)
+  if(req.params.natString) {
+    var timeStamp = req.params.natString;
+    result.natural = timeStamp;
+    
+   var newD = timeStamp.split(" ").filter(f=> f !== ',');
+  
+    res.send(newD);
+  }
 });
 
   
