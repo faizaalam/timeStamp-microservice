@@ -25,7 +25,9 @@ app.get("/", function(req,res){
 });
 
 app.get("/api/whoami", function(req,res){
- res.send(req.headers['accept-language'],req.connection.remoteAddress);
+  whoAmi.language = req.headers['accept-language'];
+  whoAmi.ipaddress = req.headers['x-forwarded-for'];
+ res.send(whoAmi);
 });
 app.get('/:date([0-9]*)',function(req,res){
   var timeStamp = parseInt(req.params.date);
