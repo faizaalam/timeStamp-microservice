@@ -15,7 +15,11 @@ app.use(express.static('public'));
 app.get("/", function (request, response) {
   response.send("https://timestamp-ms.herokuapp.com/1450137600");
 });
-app.get()
+app.get("/:date", function(req,res){
+  var newDate = new Date(req.params.date * 1000);
+    res.send(newDate);
+});
+  
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
