@@ -16,6 +16,7 @@ app.use(express.static('public'));
 
 var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 var result = {'unix': null, 'natural': null};
+var whoAmi = {"ipaddress":null,"language":null,"software":null};
 // app.get("/", function (request, response) {
 //   response.send("https://timestamp-ms.herokuapp.com/1450137600");
 // });
@@ -23,6 +24,9 @@ app.get("/", function(req,res){
   res.send(result);
 });
 
+app.get("/api/whoami", function(req,res){
+ res.send(req.headers['accept-language'],req.connection.remoteAddress);
+});
 app.get('/:date([0-9]*)',function(req,res){
   var timeStamp = parseInt(req.params.date);
   var newD = new Date(timeStamp * 1000);
